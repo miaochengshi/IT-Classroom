@@ -160,6 +160,96 @@ while n == "right":
     n = input("You're in the Lost Forest. Go left or right? ") 
 print("You got out of the Lost Forest!")
 
+使用while语句，我们还可以实现计数输出的功能。
+首先初始化计数器
+n = 0
+我们计5个数，所以
+while n < 5:
+   print(n)
+   n = n + 1
+运行查看输出结果，进入wihile循环后，程序计了5个数，也就是 0-4。当 n被赋值为5时，
+条件 n < 5 的值为False，程序不再进入while循环。
 
+接下来我们来介绍 Python中另一种循环：For循环
+for循环的在python写成下面这种格式
+for 变量 in range(范围或数组)：
+    执行语句
+    ..
+range(x)表示从0开始，每次递增1，直到到x-1的所有的数
+我们输入 range(5),得到的是 0，2，3，4。
+for循环执行时，首先将range（范围或数组）里的第一个元素赋值给n，然后执行下面的代码块中的语句，
+下一步再将range（范围或数组）里的第2个元素赋值给n，然后再执行下面的代码块，直到完成遍历所有的元素，
+结束当前for循环。
 
+我们用for循环改写前面使用while计数输出的程序：
+for n = range(5)：
+   print(n)
 
+这里的range还有另外两种格式：
+一种是
+range(start, stop)
+表示从 start 开始，每次递增1，到 stop-1 结束。如range（4,9）
+另一种是
+range(start, stop, step)
+表示从 start开始，每次变化步长为 step，直到 stop - 1。如range(5,11,2)
+range里的参数都必须是整数型。
+
+当我们使用循环语句时，有时候可能希望程序提前结束，这个时候可能还没有达到循环自动停止的条件，
+我们可以通过break语句实现程序在任意时刻跳出循环。
+我们以while循环为例，
+while 条件1:
+    while 条件2:
+       执行语句1 
+       break 
+       执行语句2
+    执行语句3
+
+下面我们总结一下for循环和while循环各自的优缺点。
+for循适用于次数已知的循环，可以通过break提前跳出循环
+可以用作计数器，可以改写成while循环
+
+while循环更适合次数未知的循环，可以通过break提前跳出循环
+可以用作计数器，但是需要提前初始化，不一定可以改写成for循环
+
+下面我们通过几个习题来回顾一下这一期的内容。
+1. 下面代码运行后，u的值是多少
+once = "umbr"
+repeat = "ella"
+u = once + (repeat+" ")*4
+
+2. 下面代码的输出是什么？
+pset_time = 15
+sleep_time = 8
+print(sleep_time > pset_time)
+derive = True
+drink = False
+both = drink and derive
+print(both)
+
+3. 当输入x为0，y为5时，下面代码的输出是什么？
+x = float(input("Enter a number for x: "))
+y = float(input("Enter a number for y: "))
+if x == y:
+    if y != 0:
+        print("x / y is", x/y)
+elif x < y:
+    print("x is smaller")
+else:
+    print("y is smaller")
+    
+4. 当输入 Right 时，下面代码输出什么？
+n = input("You're in the Lost Forest. Go left or right? ")
+while n == "right":
+    n = input("You're in the Lost Forest. Go left or right? ")
+print("You got out of the Lost Forest!")
+
+5. 运行下面代码的输出是什么？
+mysum = 0
+for i in range(5, 11, 2):
+    mysum += i
+    if mysum == 5:
+        break
+        mysum += 1
+print(mysum)
+
+  
