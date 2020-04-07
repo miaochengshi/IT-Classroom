@@ -138,6 +138,28 @@ if moc == "left":
    print("*************")
    print("*************")
 
+但是，如果我们用这种方法想要做个完整的小游戏的话，需要枚举出所有的用户输入的情况，这样显然是不现实的。
+这里我们再来介绍Python中另一种语法，循环操作：while
+我们编辑循环语句时采用这种格式：
+while 条件：
+   执行语句
+   ...
+条件这里同样是返回布尔型，条件为 True时，执行while下面的代码块。执行完后再继续判断条件是否为 True。
+直到判定条件为False时，跳过执行while下面的代码块，继续执行后面的代码。
+
+我再看一个小游戏的例子。
+帮助 [00]走出下面的迷宫，左侧时出口。用户如果一直输入right，则会一直卡在迷宫中，用户输入left会成功从迷宫中逃脱。
+******
+******
+[00] *     
+******
+******
+
+n = input("You're in the Lost Forest. Go left or right? ") 
+while n == "right":
+    n = input("You're in the Lost Forest. Go left or right? ") 
+    print("You got out of the Lost Forest!")
+Go left or right?
 
 
 
