@@ -106,9 +106,185 @@ python会创建一个新的作用域。 f作用域，
 添加上return。此时函数返回的结果是 None，
 也就是等价于我们在函数最后写上了 return None。
 这里的None我们第一期讲过，是一个特殊的类型。
+
+下面我们来比较一下 return 和 print的区别。
+首先 return只在函数内部有意义
+一个函数内，只能有一个 return
+函数中return之后的代码不会被执行
+return会返回一个值，并把这个值传递给调用这个函数的对象，不会输出到控制台
+
+print 在函数外也可以执行
+在函数内可以有多个 print，对应有多个输出
+函数中 print后面的代码会被继续执行
+print的值会直接在控制台输出。
+
+下面我在Spyder里用一个例子具体看一下这两个关键词的 区别。
+def is_even_with_return( i ):
+    """
+    Input: i, a positive int
+    Returns Ture is i is even, otherwise False
+    """
+    print("with return")
+    remainder = i %  2
+    return remainder == 0
+
+z = is_even_with_return(3)
+
+我们编辑一个判断一个整数是奇数还是偶数的函数,
+返回值的布尔型，如果如果是偶数，那么这个数值处以2的余数是0，
+函数就返回True，否则返回False。
+另外我们在函数主体中通过print添加了一个输出
+
+运行一下，我们可以看到控制的输出只有print中的字符串，
+
+但是这个时候
+is_even_with_return(3)
+会得到一个值False,并把这个布尔型的 结果赋值给z
+
+如果我们想输出这个值，要通过print的方式输出。
+我们在下面再添件一句
+print(z)
+可以看到输出为
+with return
+False
+
+如果我们函数中，不写 return，
+def is_even_with_return( i ):
+    """
+    Input: i, a positive int
+    Returns Ture is i is even, otherwise False
+    """
+    print("with return")
+    remainder = i %  2
+
+z = is_even_with_return(3)
+
+print(z)
+运行一下，可以看到结果是
+with return
+None
+也就是python在运行时会自动添加一个
+return None
+下面我们来看一下，使用函数 的优势。我们还是先创建一个简单的判断是否是偶数的函数，
+def is_even( i ):
+    """
+    Input: i, a positive int
+    Returns Ture if i is even, other False
+    """
+    remainder = i % 2
+    return remainder == 0
+ 然后我们通过for循环 多次调用这个函数，实现判断0-20哪些是奇数哪些是偶数，
+ 并在控制台输出,我们只要在主程序添加下面这段代码：
+print("All numbders from 0 and 20: even or odd")
+for i in range(21):
+    if is_even(i):
+        print(i, "even")
+    else:
+        print(i, "odd")
+
+运行一下，可以看到我们的输出结果：
+All numbders from 0 and 20: even or odd
+0 even
+1 odd
+2 even
+3 odd
+4 even
+5 odd
+6 even
+7 odd
+8 even
+9 odd
+10 even
+11 odd
+12 even
+13 odd
+14 even
+15 odd
+16 even
+17 odd
+18 even
+19 odd
+20 even
+这样，我们只写了一次函数，就调用了20次，非常方便。
+
+在一个函数中，我们还可以嵌套定义另一个函数，例如下面这个例子：
+def g(x): 
+    def h():
+        x = 'abc' 
+    x =x + 1
+    print('g: x =', x) 
+    h()
+    return x
+x = 3
+z = g(x)
+我们通过这个例子再来加深一下对作用域的理解。
+一开始，python会新建一个全局作用域
+里面有变量g，g指向函数对象 g(x)
+下一步，代码运行
+x = 3
+全局作用域里会增加一个变量 x，他的值是3
+下一步运行
+z = g(x)
+调用函数g，python会新建一个g作用域，
+作用域中新建变量x，x的值由主程序中的x映射过来，
+这里g作用域中的x为4
+下面python会在g作用域中增加变量h
+h指函数对象 h(x)
+下面运行
+x = x+1
+g作用域中的x更新为4
+然后下一步在控制台输出
+g: x = 4
+再下一步调用函数h()
+python新建一个h作用域
+h作用域里增加变量x，x的值是字符串 abc
+因为h中没有return，python会自动返回None。
+然后清楚h作用域。
+下一步函数gx return x，也就是把x当前的值4返回给主程序，
+并在全局作用域增加变量z，赋值为4。然后清除g作用域。
+只留下全局作用域。此时便只留下全局作用域，
+我们可以看到 变量x的值为3，z的值为4.
+
+关于程序运行中的作用域和变量的变化规则问题，
+大家如果不清楚的话，可以使用 pythontutor这个网站：
+http://www.pythontutor.com
+把自己的代码复制进去就可以，点击最下方的可视化执行，就可以一步步运行看到作用域的变量的变化了。
+
+下面我们通过几个习题来回顾一下这一期的内容
+1. 运行下面这段代码，会输出几行结果？
+def add(x, y):
+    return x+y
+
+def mult(x, y):
+    print(x*y)
+
+add(1,2)
+print(add(2,3))
+mult(3,4)
+print(mult(4,5))
+
+4行
+
+2. 下面这段代码的输出是什么？
+def sq(func, x):
+    y = x**2
+    return func(y)
+
+def f(x):
+    return x**2
+
+calc = sq(f, 2)
+print(calc)
+
+16
+
+
+
+因为h中没有return，python会自动返回None。
+
+ 
+
+
 f作用域中有x， 
-
-
-
-li
+f作用域中有x， 
 
