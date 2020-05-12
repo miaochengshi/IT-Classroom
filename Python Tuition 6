@@ -65,6 +65,7 @@ len(L)获取他的元素个数
 L[0]表示他的第一个元素。2
 L[2] + 1 表示第3个元素与1相加运算的结果，也就是 5
 L[3] 表示第4个元素，也就是另一个列表 [1,2]
+L[:]表示L中的所有元素 [2, "a", 4, [1,2]]
 同样的，L[4]超出了索引范围，会报错。
 L[-3] 表示从右向左第3个元素，  “a”
 
@@ -100,17 +101,17 @@ L = [2, "a", 4, [1,2]]
 L.append(element)
 例如
 L.append(5) [2, "a", 4, [1,2], 5]
-括号里的内容会作为一个元素被添加到L后面。
+这个操作会修改L的内容,但是没有返回值。括号里的内容会作为一个元素被添加到列表L中。
 如果我们在输入
 L.append([2,"a"])
-那么L会再增加一个元素，这个元素是一个列表 [2,"a"]，这时，L变成
+同样也没有返回值。那么L会再增加一个元素，这个元素是一个列表 [2,"a"]，这时，L变成
 [2, "a", 4, [1,2], 5, [2, "a"]]
 
 如果我们想把列表中的元素分别作为一个元素添加到L里面 ，我们要用另一个操作
 L.extend(list)
 如果我们输入
 L.extend([“q”,1])
-那么列表L后面会增加两个元素，这时L变成
+没有返回值，列表L后面会增加两个元素，这时L变成
 [2, "a", 4, [1,2], 5, 2, [2, "a"], "q", 1]
 
 有时候我们需要删除列表L中的元素，我们可以用
@@ -155,7 +156,113 @@ L = [“a”,"b", "c"]
 我们还可以在每个字符间添加连接符
 “_”.join(L)  "a_b_c"
 
+如果我们想对列表L中的元素排序，有两种方法，
+L = [1, 2, 0, 8, 3]
+sorted(L)
+返回值是把列表L中的元素从小到大排序的结果，但是这个操作不会改变L的内容。
+另一种是
+L.sort()
+没有返回值，也是把L中的元素从小到大排序，L中元素的位置也会被修改，这时L为
+[0, 1, 2, 3, 8]
+排序操作要求列表中元素的数据类型是一致的。
 
+此外，常用的操作还有将列表逆序，
+L = [1, 2, 0, 8, 3]
+L.reverse()
+没有返回值，这一操作是将列表L中的元素位置颠倒，同样会修改列表中的元素，此时的L为
+[3, 8, 0, 2, 1]
+
+由于列表中的元素是可以被修改的，我们使用时需要多加留意，下面我们看一个例子。
+warm = ['red', 'yellow', 'orange']
+hot = warm
+hot.append('pink')
+print(warm)
+print(hot)
+这里首先warm指向这样一个列表对象，然后warm赋值给hot。
+这时hot也指向同一个列表对象。
+然后在hot指向的列表对象后面增加一个元素 pink。
+此时，列表中的元素被修改了，所以当无论当我们输出warm还是hot，
+因为他们都是指向这个列表的，所以输出的结果都是修改之后的列表，
+所以这段代码的输出是
+['red', 'yellow', 'orange', 'pink']
+['red', 'yellow', 'orange', 'pink']
+
+有时候我们如果不希望像上一个例子一样将两个变量只想同一个列表，
+我们可以复制现有列表再赋值给新的变量。例如下面这个
+cool = ['blue', 'green', 'gray']
+chill = cool[:]
+chill.append('black')
+print(cool)
+print(chill)
+
+输出为
+['blue', 'green', 'gray']
+['blue', 'green', 'gray', 'black']
+
+我们再看一个例子，
+warm = ['red', 'yellow', 'orange']
+sortedwarm = warm.sort()    这里会修改列列表warm的内容，但是这个操作没有返回值，所以sortedwarm此时是 None，一种特殊类型
+print(warm)
+print(sortedwarm)
+
+cool = ['blue', 'green', 'gray']
+sortedcool = sorted(cool）     这里不会修改列表cool的内容，返回值为排序之后的结果。
+print(cool)
+print(sortedcool)
+
+更多操作可以在官方教程中查询：
+https://docs.python.org/3/tutorial/datastructures.html
+
+下面我们来看几个习题，
+
+1. 下面代码的输出是什么？
+def always_sunny(t1, t2):
+    """ t1, t2 are non empty """
+    sun = ("sunny","sun")
+    first = t1[0] + t2[0]
+    return (sun[0], first)
+    
+print(always_sunny(('cloudy'), ('cold',)))
+输出为：
+('sunny', 'ccold')
+
+2. 下面代码的输出是什么？
+L = ["life", "answer", 42, 0]
+for thing in L:
+    if thing == 0:
+        L[thing] = "universe"
+    elif thing == 42:
+        L[1] = "everything"   
+        
+print(L)
+
+输出为：
+['universe', 'everything', 42, 0]
+
+3. 下面代码的输出是什么？
+L1 = ['re']
+L2 = ['mi']
+L3 = ['do']
+L4 = L1 + L2
+L3.extend(L4)
+L3.sort()
+del(L3[0])
+L3.append(['fa','la'])
+print(L3)
+
+输出为：
+['mi', 're', ['fa', 'la']]
+
+4. 下面代码的输出是什么？
+L1 = ["bacon", "eggs"]
+L2 = ["toast", "jam"]
+brunch = L1
+L1.append("juice")
+brunch.extend(L2)
+print(brunch)
+
+输出为：
+['bacon', 'eggs', 'juice', 'toast', 'jam']
 
 
 
