@@ -112,3 +112,14 @@ Towers(5, "A", "B", "C")
 这个例子的有两个基础问题，也就是第0项和第1项，对于其他项，他的数值可以通过它前面两项的值相加得到。
 
 我们在Python中通过递归实现一下。
+def fib(x):
+    """
+    input: an int x
+    returns Fibonacci of x 
+    """
+    if x == 0:
+        return 0
+    elif x ==1:
+        return 1
+    else:
+        return fib(x-1) + fib(x-2)
