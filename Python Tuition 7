@@ -123,3 +123,125 @@ def fib(x):
         return 1
     else:
         return fib(x-1) + fib(x-2)
+
+接下来我们再来看一个例子，用递归判断给定的一串字符串是否是回文序列。
+回文序列是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+这里我们不区分大小写。
+例如‘Able was I ere I saw Elba’是回文序列，
+因为从右向左是‘able was i ere i sawl eba’
+如果一个字符串长度为1或者0，那么这个字符串一定是一个回文序列。
+
+要判断一个序列是否是回文序列，我们只需要保证序列左右两端的字符是一样的，
+同时去掉左右两端的字符之后的序列也是回文序列。
+
+我们来看一下如何在python中实现
+def isPalindrome(s):
+    """
+    Input Type: String
+    Returns True if input string is palindrome,
+    Otherwise, returns False
+    """
+    def toChars(s):
+        s = s.lower()
+        ans = ''
+        for c in s:
+            if c in "abcdefghijklmnopqrstuvwxyz":
+                ans = ans + c
+        return ans
+    
+    def isPal(s):
+        if len(s) <= 1:
+            return True
+        else:
+            return s[0] == s[-1] and isPal(s[1:-1])
+    return isPal(toChars(s))
+
+首先，我们定义一个函数来判断给定字符串是否是回序列，
+这里我们不区分大小写也不考虑表单符号和运算符。
+我们先将给定的序列转化成全部小些且只包含字母的形式。
+这个过程我们通过一个子函数实现，
+我们使用python自带的函数将s变成全部小写的形式，
+s = a.lower(）
+然后晒先只保留s中的字母，将转换之后的字符串返回
+
+下面我们再写个子函数实现递归判断，
+当序列长度小于等于1时，这个序列就是回文序列。我们返回True
+否则，如果s第一个和最后一个字母相同，并且去掉这两个元素之后的序列也是回文序列，
+我们就判断s是回文序列，返回True，否则返回False
+最后是我们函数的返回，返回 isPal(toChars(s))
+
+我们来运行测试一下：
+s = input("Input a string to see if that is palindrome: ")       
+if isPalindrome(s):
+    print(s, "is PALINDROME!!")
+else:
+    print(s, "is NOT palindrome.")
+    
+下面我们再来一起学习另外一种复合数据类型，字典（Dictionary）
+有时候我们需要吧一个关键词和一串信息或者数据连接起来，例如
+我们希望输入姓名就能看到性别.
+John: Male
+Mike: Male
+Lucy: Female
+我们可以创建一个字典存储这些数据
+dic = {"John" : "Male", "Mike" : "Male", "Lucy" : "Female" }
+使用大括号表示要创建一个字典，字典中元素用逗号隔开，
+每个元素包含关键词和关键词的值，关键词与值 之前用冒号隔开，例如
+"John" : "Male"
+
+当我们输入
+dic["John"]
+Python就会返回这个关键词的值字符串"Male"
+
+字典的关键词一般是唯一的，如果重复最后的一个关键词对会替换前面的，值不需要唯一
+
+字典中元素是可以被修改的，例如我们想在字典 dic中添加关键词 "Bob",他的值是"Male"，
+只要输入 dic["Bob"] = "Male"
+这是字典dic就更新为
+ {'John': 'Male', 'Mike': 'Male', 'Lucy': 'Female', 'Bob': 'Male'}
+ 
+ 我们还可以判定一个关键词是否在字典里
+ 例如输入
+ "John" in dic
+ 如 "John"是字典dic的一个关键词，那么就会返回True，否则返回False
+ 我们还可以删除dic中的元素，例如输入
+ del(dic["Mike"])
+这是字典dic变为
+{'John': 'Male', 'Lucy': 'Female', 'Bob': 'Male'}
+我们还可以用
+dic.keys()
+获取字典dic中所有的关键词，返回是一个列表的形式，列表中包含所有的关键词
+如果属于
+dic.values()
+那么返回的就是所有值组成的一个列表
+
+下面我们对比以一下列表和字典
+列表是一系列有序的元素组成
+通过一个整数所索引列表的元素
+列表中元素是有序的 
+
+字典是一个关键词对应一个值
+通过关键词索引
+字典中的元素是无序的
+
+我们再回头看一下求斐波那契数列的例子，使用我刚才的算法，每一次输入一个序号，
+都要重新计算它前面的每个位置的数据，计算量很大，使用字典，
+我们可以将每次计算的结果储存起来，下次再需要计算这个数值的时候可以直接拿来使用。
+可以节省很多时间，我们来看一下如何实现
+
+def fib_efficient(n, d):
+    """
+    Inputs: non-negtive int n and dictionary d.
+    Returns the nth fibnonacci
+    """
+    if n in d:
+        return d[n]
+    else:
+        ans = fib_efficient(n-1, d) + fib_efficient(n-2, d)
+        d[n] = ans
+    return ans
+
+b = {0:0, 1:1}      #用问题的基础解初始化字典
+print(fib_efficient(8,b))
+
+
