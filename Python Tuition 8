@@ -9,4 +9,87 @@
 另外代码测试前，需要有明确的输入以及每个输入下期望的输出。
 如果实际输出结果与期望值相同，就完成测试，否则需要调试，也就是debug。
 
+黑盒测试：
+测试时不看具体代码
+不一定需要开发者本人进行测试
+测试案例可以被重复使用
+当代码中每一条可能的路径都被测试了，称为path complete
+
+透明盒测试：
+根据代码设计测试台架
+
+测试原则：
+错误做法
+1. 写完整个程序
+2. 测试整个程序
+3. 调试整个程序
+正确做法：
+1. 使用函数
+2. 测试和调试函数
+3. 写下一个函数
+4. 测试并调试函数
+
+错误做法：
+1. 直接修改代码
+2. 记住bug的位置
+3. 测试代码
+4. 忘记了bug的位置和修改的位置
+5. 。。。。
+正确做法：
+1. 备份代码
+2. 修改代码
+3. 通过注释标记潜在bug的位置
+4. 测试代码
+5. 比较旧代码和新代码
+
+常见的异常：
+• trying to access beyond list limits
+test = [1,7,4]
+test[4]
+IndexError
+• trying to convert an inappropriate type
+int(test)
+TypeError
+• referencing a non-existing variable
+a
+NameError
+其他异常：
+• mixing data types without coercion
+'a'/4  TypeError
+• SyntaxError: Python can’t parse program
+• NameError: local or global name not found
+• AttributeError: attribute reference fails
+• TypeError: operand doesn’t have correct type
+• ValueError: operand type okay, but value is illegal
+• IOError: IO system reports malfunction (e.g. file not
+
+可以通过try命令查看异常
+try:
+  a = int(input("Tell me one number:"))
+  b = int(input("Tell me another number:")) print(a/b)
+except:
+  print("Bug in user input.")
+
+try:
+  a = int(input("Tell me one number: "))
+  b = int(input("Tell me another number: ")) print("a/b = ", a/b)
+  print("a+b = ", a+b)
+except ValueError:
+  print("Could not convert to a number.")
+except ZeroDivisionError:
+  print("Can't divide by zero")
+except:
+  print("Something went very wrong.")
+
+
+
+
+
+
+
+
+
+
+
+
 
