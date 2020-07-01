@@ -83,7 +83,7 @@ except:
   print("Bug in user input.")
 以上方式try-except语句捕获所有发生的异常。但这不是一个很好的方式，我们不能通过该程序识别出具体的异常信息。因为它捕获所有的异常。
 
-
+还可以通过except来指定异常种类，然后根据不同的异常，向用户输出不同的内容。
 try:
   a = int(input("Tell me one number: "))
   b = int(input("Tell me another number: ")) print("a/b = ", a/b)
@@ -94,12 +94,16 @@ except ZeroDivisionError:
   print("Can't divide by zero")
 except:
   print("Something went very wrong.")
+  
+除此之外，处理异常的语句还有 finally，
 
-断言：
+最后我们一起来学习断言的用法：
 def avg(grades):
   assert len(grades) != 0, 'no grades data'
   return sum(grades)/len(grades)
 如果 len(grades) != 0 不满足，那么输出 'no grades data'
+
+尽早发现错误
 
 With the below implementation, is the test set "n = 4 | n = -4 | n = 5" path complete?
 def is_even(n):
