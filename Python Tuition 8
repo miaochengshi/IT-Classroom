@@ -13,7 +13,8 @@
 def is_bigger(x, y):
   """ Assumes x and y are ints
   Returns True if y is less than x, else False """
-直观上来看，这段代码我们可以从三个角度进行测试，
+输入是两个整数，如果第2个数比第1个小，就返回True，否则返回false。
+直观上来看，这段代码我们可以根据边界条件从三个角度进行测试，
 第一个角度，我们测试x大于y时的输出结果，
 第二个角度，我们测试x小于y时的输出结果，
 第三个角度，我们测试x等于y时的输出结果。
@@ -65,14 +66,14 @@ def abs(x):
 在我们测试或者调试过程中，常常会遇到一些常见的错误提示。
 例如test = [1,2,3] then test[4]，我们去索引一个不存的位置，这个时候python会返回 IndexError
 例如int(test)，我们将一个非数值型的参数强制类型转换为整数型，python会返回 TypeError
-例如 我们去所以一个为定义的参数，会返回 NameError
+例如 我们去索引一个未定义的参数，会返回 NameError
 例如'3'/4，我们将字符串与数值做运算，python会返回 TypeError
 SyntaxError: Python can’t parse program
-• NameError: local or global name not found
-• AttributeError: attribute reference fails
-• TypeError: operand doesn’t have correct type
-• ValueError: operand type okay, but value is illegal
-• IOError: IO system reports malfunction (e.g. file not found)
+NameError: local or global name not found
+AttributeError: attribute reference fails
+TypeError: operand doesn’t have correct type
+ValueError: operand type okay, but value is illegal
+IOError: IO system reports malfunction (e.g. file not found)
 
 当我们遇到上述那些错误时，python就会停止运行，进而影响程序对后续代码的执行。这就是异常。
 异常即是一个事件，该事件会在程序执行过程中发生，影响了程序的正常执行。
@@ -108,7 +109,9 @@ except ZeroDivisionError:
 except:
   print("Something went very wrong.")
   
-除此之外，处理异常的语句还有 finally。
+除此之外，处理异常的语句还有 else和finally。
+如果在try子句执行时没有发生异常，python将执行else语句后的语句（如果有else的话）
+try-finally 语句无论是否发生异常
 finally后面的语句始终都会被执行，即使前面的语句出现错误或者异常。例如，无论代码是否有错误或者异常，
 我们都会在代码执行结束之后关闭一个文档，这时就可以使用finally语句。
 
