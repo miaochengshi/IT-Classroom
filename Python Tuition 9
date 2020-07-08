@@ -81,7 +81,7 @@ print(origin.y)
 
 到目前为止，这个坐标类我们只定义了它的数据属性，如果我想对类的实例进行操作，我还要继续定义它的方法。
 比如我们定义个计算距离的方法distance。如果要计算距离，我们需要两个坐标才行，也就是distance定义的参数中包含两个实例。
-class Coordinate(object):
+class Coordinate:
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -97,15 +97,24 @@ print(origin.x)
 print(c.distance(origin))
 print(Coordinate.distance(c,origin))
 
+我们使用distance这个功能时有两种调用方式。
+对于两个对象c和origin，我们可以用c.distance(origin)获取两个坐标之间的距离
+此外，我们还可以用 Coordinate.distance(c,origin)获取两个坐标间的距离。
+
 3
 0
 5.0
 5.0
 
-print(c)
+对于这段代码，如果我们想输出c对应的坐标，当我输入print(c)时，会发现python的返回值为c的类型：
 <__main__.Coordinate object at 0x7ff8ce86a588> 
 
-class Coordinate(object):
+如果我们想返回值是c的坐标，我们可以使用python的内置类属性： __str__
+__str__ 返回一个对象的描述信息(必须是string)。
+__str__方法需要返回一个字符串，当做这个对象的描写
+
+
+class Coordinate:
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -115,32 +124,36 @@ class Coordinate(object):
         return (x_diff_sq + y_diff_sq)**0.5
     def __str__(self):
         return "<" + str(self.x) + "," + str(self.y) + ">"
+需要注意的是，这里return的类型必须是字符串型。
+
 c = Coordinate(3, 4)
 origin = Coordinate(0, 0)
 print(c.x)
 print(origin.x)
 print(c.distance(origin))
 print(Coordinate.distance(c,origin))
-
 print(c)
+
 3
 0
 5.0
 5.0
 <3,4>
-__str__ 返回一个对象的描述信息(必须是string)
-_str__方法需要返回一个字符串，当做这个对象的描写
 
+c是一个实例，当我们输出c的类型时，它属于类Coordinate会看到如下
 print(type(c))
  <class __main__.Coordinate> 因为对象c是类Coordinate
+
+Coordinate本身也是一个类
 print(Coordinate)
  <class __main__.Coordinate> 因为Coordinate就是类
+类属于一个类型，所以下面的输出是类型。
 print(type(Coordinate))
  <type 'type'> 因为Coordinate类是对象的一种类型
-
+对于一个实例，我们可以用下面这个命令查看这个实例是否属于某一类。
 print(isinstance(c, Coordinate)) 查看一个对象是否是类Coordinate
 
-常用的方法：
+此外，python中还自带其他一些常用的内置类属性，这些属性可以用来定义一些常见操作。
 __add__(self, other)    self + other
 __sub__(self, other)    self - other
 __eq__(self, other)     self == other
@@ -149,7 +162,7 @@ __len__(self)           len(self)
 __str__(self)           print self
 
 下面我们来看一个例子，建立一个分数类
-class Fraction(object):
+class Fraction:
     """
     A number represented as a fraction
     """
@@ -178,14 +191,78 @@ class Fraction(object):
         """ Returns a new fraction representing 1/self """
         return Fraction(self.denom, self.num)
 
-a = Fraction(1,4)
-b = Fraction(3,4)
-c = a + b # c is a Fraction object
-print(c)
-print(float(c))
-print(Fraction.__float__(c))
-print(float(b.inverse()))
+在python3的创建类的定义中，我们还可以使用 class Fraction(object):的方式。
+后面加上(Object)表示我们将要创建的类Fraction继承Object类。
+继承 object 类的是新式类，不继承 object 类的是经典类。
+在python2中，这两种类会有些区别，但是在python3中，默认的都是新式类，
+所以我们不必显式的继承object。关于继承的概念。我们会在下一期教程中共同学习。
 
+下面哪一项定义了一个类Car
+def class Car:
+class Car:
+def Car:
+class A
 
+根据下面类的定义，如何创建一个有4个wheel，2个door的对象 mycar
+class Car:
+    def __init__(self, w, d):
+        self.wheels = w
+        self.doors = d
+        self.color = ""
+
+mycar = Car(4, 2)
+
+根据下面类的定义，增加哪代码可以实现修改车颜色的方法？
+class Car:
+    def __init__(self, w, d):
+        self.wheels = w
+        self.doors = d
+        self.color = ""
+
+def paint(c):
+    color = c
+    
+def paint(self, c):
+    color = c
+    
+def paint(c):
+    self.c = c
+
+def paint(self, c):
+    self.color = c
+    
+类的定义如下，此时如果创建一个对象 mycar = Car(4, 2)，如果把mycar的颜色修改为 “red”？
+class Car:
+    def __init__(self, w, d):
+        self.wheels = w
+        self.doors = d
+        self.color = ""
+    def paint(self, c):
+        self.color = c
  
+ mycar.paint("red")
+ 
+ 运行下面这段代码的输出是什么？
+ class Car:
+    def __init__(self, w, d):
+        self.wheels = w
+        self.doors = d
+        self.color = ""
+    def paint(self, c):
+        self.color = c
+    def __eq__(self, other):
+        if self.wheels == other.wheels and \
+            self.color == other.color and \
+            self.doors == other.doors:
+            return True
+        else:
+            return False
+
+mycar = Car(4, 2)
+mycar.paint("red")
+yourcar = Car(4,2)
+print(mycar == yourcar)
+
+
+Flase
 
