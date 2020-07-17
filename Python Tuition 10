@@ -3,7 +3,7 @@
 上一期我们共同学习了面向对象的编程方法，包括如何去按照自己的要求去定义一个类。
 我们还创建了一个坐标类和一个分数类，并且能够通过使用我们创建的类对对象完成一些简单的操作。
 
-今天我们将继续学习一些类的内容，包括类的访问器（getters）和存取器（Setters），类的信息隐藏，
+今天我们将继续学习一些类的内容，包括类的访问器（getters）和存取器（Setters）
 以及类变量。另外，我们还将一起学习一些关于继承的概念。
 
 关于类的定义与使用，大家可以打开上一期视频回顾一下。
@@ -53,20 +53,23 @@ class Animal:
 当我们继续通过 a.age 去访问对象的age属性的时候，Python就会报“属性错误” 'Animal' object has no attribute 'age'。
 因此使用访问器和存取器一定程度上也可以减少一些bug的出现。
 
-从上面的例子，我们会发现，Python会允许我们很容易地从类外去访问并修改数据属性，还允许我们去创建新的数据属性
-从这个角度来说，Python不善于类的信息隐藏。
+下面我们再来看一下定义类的默认变量的方法。
+例如前面的例子
+    def set_name(self, newname = ""):
+        self.name = newname
+我们在方法 set_name的变量newname后面加上一个赋值的操作，这样就把newname的值默认为一个空字符串。
+这样当我们使用 set_name这个方法时，如果缺省的参数，Python也不会报错，而是会使用默认的 空字符串
+a = Animal(5)
+print(a)
+a.set_name()
+print(a)
+当我们使用set_name并传递了参数值时，我们的给定的值就会传递给对应的参数。
+a.set_name("Lucy")
+print(a)
+
+接下来我们来学习一下继承
 
 
 
-
-l
-li
-lir
-liru
-liru 
-
-l
-        self.age = newagei
-        self.age = newageru
-        self.age = newage 
-        self.age = newage
+接下来我们
+接下来我们
