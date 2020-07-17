@@ -1,0 +1,72 @@
+今天我们继续来学习Python中类和继承的概念。
+
+上一期我们共同学习了面向对象的编程方法，包括如何去按照自己的要求去定义一个类。
+我们还创建了一个坐标类和一个分数类，并且能够通过使用我们创建的类对对象完成一些简单的操作。
+
+今天我们将继续学习一些类的内容，包括类的访问器（getters）和存取器（Setters），类的信息隐藏，
+以及类变量。另外，我们还将一起学习一些关于继承的概念。
+
+关于类的定义与使用，大家可以打开上一期视频回顾一下。
+
+首先，我们来看一下什么是访问器，什么是存取器。
+我们来看一下下面这段代码
+class Animal:
+    def __init__(self, age):
+        self.age = age
+        self.name = None
+    def get_age(self):
+        return self.age
+    def get_name(self):
+        return self.name
+    def set_age(self, newage):
+        self.age = newage
+    def set_name(self, newname):
+        self.name = newname
+    def __str__(self):
+        return "Animal:" + str(self.name) + ":" + str(self.age)
+在这里：
+    def get_age(self):
+        return self.age
+    def get_name(self):
+        return self.name
+我们就是在使用访问器，我们使用访问器来访问并返回对象的一些参数。
+
+而在下面这里，
+    def set_age(self, newage):
+        self.age = newage
+    def set_name(self, newname):
+        self.name = newname
+我们就是在使用存取器，使用存取器能够让我去设置或者修改对象的一些参数
+
+例如这个例子中，我们创建一个对象 a = Animal(5)
+我们可以通过 a.get_name() 和 a.get_age() 来使用访问器，
+我们可以通过 a.set_name("Rabbit")和a.set_age(4)来使用存取器。
+
+当然，我们也可以使用 a.age 和 a.name来访问对象的age属性和name属性，但是更推荐大家使用这访问器和存取器的方式。
+因为有些时候，如果类的创建者修改了一些属性定义的符号，例如
+class Animal:
+    def __init__(self, age):
+        self.years = age
+        self.name = None
+    def get_age(self):
+        return self.years
+当我们继续通过 a.age 去访问对象的age属性的时候，Python就会报“属性错误” 'Animal' object has no attribute 'age'。
+因此使用访问器和存取器一定程度上也可以减少一些bug的出现。
+
+从上面的例子，我们会发现，Python会允许我们很容易地从类外去访问并修改数据属性，还允许我们去创建新的数据属性
+从这个角度来说，Python不善于类的信息隐藏。
+
+
+
+
+l
+li
+lir
+liru
+liru 
+
+l
+        self.age = newagei
+        self.age = newageru
+        self.age = newage 
+        self.age = newage
