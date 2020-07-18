@@ -4,7 +4,7 @@
 我们还创建了一个坐标类和一个分数类，并且能够通过使用我们创建的类对对象完成一些简单的操作。
 
 今天我们将继续学习一些类的内容，包括类的访问器（getters）和存取器（Setters）
-以及类变量。另外，我们还将一起学习一些关于继承的概念。
+以及类变量。另外，我们还将一起学习Python中层次结构的概念。
 
 关于类的定义与使用，大家可以打开上一期视频回顾一下。
 
@@ -67,9 +67,198 @@ print(a)
 a.set_name("Lucy")
 print(a)
 
-接下来我们来学习一下继承
+接下来我们来学习一下层次结构（Hierarchies）
+动物
+人 狗 兔子
+学生
+小学生 中学生 大学生。。。
+
+对于这样一个层次结构，动物类是基类，其他的都是子类。子类会继承基类的所有数据和方法，
+子类还可以再添加其他的一些信息和方法，此外，子类还可以覆盖或者说重定义基类的方法。
+
+下面我们来看一个例子。
+我们使用刚才定义的 Animal 类作为一个基类。
+
+接下来我们来创建一个子类 Dog 继承基类 Animal
+创建子类使用下面这种格式：
+class Dog(Anaimal):
+关键词 class 然后是子类的名称，后面括号，括号中是这个子类要继承的类的名称，然后冒号，
+然后在下面定义这个子类的一些方法。
+class Dog(Animal):
+    def speak(self):
+        print("woof")
+    def __str__(self):
+        return "Dog:" + str(self.name) + ":" + str(self.age)
+在这个 Dog 子类的定义中，我们添加了一个方法speck的定义，这个方法只在 Dog这个子类中有效，
+此外我们在 dog类中重定义了 str方法，同样的，这个方法中定义的输出格式只在 Dog类中有效。
+如果在基类中调用这个方法Python就会报错。在子类的定义中，我们不需要重复定义与基类中相同的属性，
+这里指的属性包括数据属性和方法。子类会自动继承基类中的属性。
+
+下面我们再定义一个 Animal的子类 Person
+class Person(Animal):
+    def __init__(self, name, age):
+        Animal.__init__(self, age)
+        self.set_name(name)
+        self.friend = []
+我们重定义一下Person的数据属性，这里除了age这个参数以外，我们再定义一个name参数。因为在基类的定义中，
+我们对一个实例self，已经初始化了name这样一个属性，并且定义了访问器和存储器，所以这里我们去重定义 Person的数据属性时，
+可以先调用基类Animal的数据属性的定义
+Animal.__init__(self, age)
+然后通过存储器设置name属性。
+self.set_name(name)
+然后我们在Person的数据属性中再定义一个新的数据属性friend,默认值为一个空列表。
+接下来我们再定义Person类的一些新的方法。
+class Person(Animal):
+    def __init__(self, name, age):
+        Animal.__init__(self, age)
+        self.set_name(name)
+        self.friend = []
+    def get_friend(self):
+        return self.friend
+    def add_friend(self, fname):
+        if fname not in self.friend:
+            self.friend.append(fname)
+    def speak(self):
+        print("hello")
+    def age_diff(self, other):
+        diff = self.age - other.age
+        return (abs(diff), "year difference")
+    def __str__(self):
+        return "Person:" + str(self.name) + ":" + str(self.age)
+ 最后我们重定义 Person类的 str 方法。
+ p1 = Person("Mike", 16)
+p2 = Person("Lucy", 23)
+print(p1.get_name())
+print(p1.get_age())
+print(p2.get_name())
+print(p2.get_age())
+print(p1)
+print(p1.friend)
+p1.add_friend(p2.name)
+print(p1.friend)
+p2.speak()
+p2.age_diff(p1)
+
+接下来我们再定义一个子类Student，继承类Person
+class Student(Person):
+    def __init__(self, name, age, major = None):
+        Person.__init__(self, name, age)
+        self.major = major
+    def change_major(self, major):
+        self.major = major
+接下来我们重定义speck方法，实现下面的功能：
+当我们去调用 speck这个方法时，会随机输出下面几个内容：“I have homework” "I need sleep" "I should eat" "I am watching TV"
+为了实现这个功能，我们可以使用Python内嵌的随机函数类 random。这个类中的rodom方法可以实现随机成成0-1之间的一个随机数。
+要使用这个类的方法，我们只需要在自己的类定义前导入这个方法。导入的格式是
+import random
+这样，我们就可以在类定义中直接使用randon.random()生成0-1之间的随机数。
+关于导入其他类或者其他模块的具体用法，我会在后期做视频详解介绍。
+class Student(Person):
+    def __init__(self, name, age, major = None):
+        Person.__init__(self, name, age)
+        self.major = major
+    def change_major(self, major):
+        self.major = major
+    def speak(self):
+        r = random.random()
+        if r < 0.25:
+            print("I have hoomework.")
+        elif 0.25 <= r < 0.5:
+            print("I need sleep.")
+        elif 0.5 <= r < 0.75:
+            print("I should eat.")
+        else:
+            print("I am watching TV")
+    def __str__(self):
+        return "Student: " + str(self.name) + ": " + str(self.age) + ": " + str(self.major)
+
+p1 = Student("Jack", 27, "CS")
+print(p1.get_name(), "says", end= " ")
+p1.speak()
+print(p1)
+p1.change_major("EE")
+print(p1)
+
+最后我们来一起学习一下类变量的知识。在此之前我们已经学习了实例变量，例如 self.age， self.name等等
+但是不同的实例之间的实例变量是不同的，例如 self.age和other.age表示的就是两个实例变量。
+而类变量与之不同，类变量是在一个类中的不同实例之间共享的。
+
+类变量定义在 类定义之类，数据属性之外。一般我们将类变量定义在类定义下面。我们可以使用类变量实现实例的计数或者编号。
+我们通过一个例子来说明。我们定义一个新的子类 Rabbit继承Animal类
+class Rabbit(Animal):
+    tag = 1
+    def __init__(self, age, parent1 = None, parent2 = None):
+        Animal.__init__(self, age)
+        self.parent1 = parent1
+        self.parent2 = parent2
+        self.rid = Rabbit.tag
+        Rabbit.tag += 1
+
+例如我们先建立一个实例r1，这个时候 r1.tag就指向了 Rabbit.tag也就是1.
+创建完这个实例之后，tag会加一，这个时候会Rabbit.tag指向了2.
+当我们再创建一个实例r2的时候，这个时候 r2.tag指向此时的Rabbit.tag也就是2.
+以此类推，我们就可以给每个创建的实例增加一个标号，。
+下面我们给这个类定义访问器。
+class Rabbit(Animal):
+    tag = 1
+    def __init__(self, age, parent1 = None, parent2 = None):
+        Animal.__init__(self, age)
+        self.parent1 = parent1
+        self.parent2 = parent2
+        self.rid = Rabbit.tag
+        Rabbit.tag += 1
+    def get_rid(self):
+        return str(self.rid).zfill(3)
+    def get_parent1(self):
+        return self.parent1
+    def get_parent2(self):
+        return self.parent2
+
+ zfill() 方法返回指定长度的字符串，原字符串右对齐，前面填充0。str.zfill(width)
+ 
+ 下面我们定义两个兔子相加的方法。对应 生小兔子的情况。
+ def __add__(self, other):
+        return Rabbit(0, self, other)
+ 
+ 另外我们再定义一个判断相等的方法，对应判断两个兔子是否有相同的父母。这里我们不考虑顺序，只要两个实例，
+ 他们的parent是相同的，我们就判断相等。这就存在两种情况。
+ def __eq__(self, other):
+        parent_same = self.parent1.rid == other.parent1.rid and self.parent2.rid == other.parent2.rid
+        parent_opposite = self.parent1.rid == other.parent2.rid and self.parent2.rid == other.parent1.rid
+        return parent_same or parent_opposite
+    
+r1 = Rabbit(4)
+r1.set_name("Rab1")
+r2 = Rabbit(5)  
+r2.set_name("Rab2")
+r3 = Rabbit(4)
+r3.set_name("Rab3")
+print(r1, r1.get_rid())
+print(r2, r2.get_rid())   
+print(r3, r3.get_rid())   
+
+r4 = r1 + r2
+r5 = r1 + r2
+r6 = r2 + r3
+print("r3 parent1:", r3.get_parent1())  
+print("r3 parent2:", r3.get_parent2())  
+
+print("r4 and r5 have the same parents?", r4 == r5)
+print("r4 and r6 have the same parents?", r4 == r6)
 
 
+ 
+ 
+
+
+
+
+ 
+
+
+
+
+动议这样
 
 接下来我们
 接下来我们
