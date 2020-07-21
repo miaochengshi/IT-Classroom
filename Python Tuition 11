@@ -7,8 +7,63 @@
 Python中提供一个计时器模块，我们可以通过在合适的位置调用这个计时器来观测代码运行的时间
 首先我们需要导入这个模块，模块名称叫 timer 使用关键词 import导入:
 import timer
-使用的是我们通过
+使用time.clock()获取时间信息。
+我们来看一个例子。
+import time
+
+def printMove(fr, to):
+    print('move from ' + str(fr) + ' to ' + str(to))
+
+def Towers(n, fr, to, spare):
+    if n == 1:
+        printMove(fr, to)
+    else:
+        Towers(n-1, fr, spare, to)
+        Towers(1, fr, to, spare)
+        Towers(n-1, spare, to, fr)
+
 t0 = time.clock()
-开始计时，通过
+print(Towers(4, 'P1', 'P2', 'P3'))
 t1 = time.clock() - t0
-结束计时，并将运行时间传递给变量t1。我们需要查看的话只要通过print输出就可以了。
+print("t =", t1, 's.')
+
+我们用汉诺塔的代码作为例子，可以看到最后输出了运行时间。
+
+但是使用这种方法是不可靠的。因为这个时间可能会因为运行在不同配置的计算机设备上而不同。
+因此这种方法，对于不同的算法和输出，虽然会输出不同的时间结果，但是并不能明确地表达出输入和时间的关系。
+
+然后我们来看第二种方法，计算代码做运算的次数。
+对于下面这段代码
+
+def mysum(x):
+    total = 0
+    for i in range(x+1):
+        total += 1
+    return total
+我们假设每一步运算所需的时间都是相同的。
+
+return c*9.0/5 + 32
+这里有3个运算
+然后sum函数里 total = 0 是一步运算
+接下来进入for循环是一步运算，这里 total += 1 是两步运算。
+首先计算 total + 1 的值，for循环需要计算 x+1次
+然后跳出 for 循环，在进行一个 return的操作，所以如果输入整数x的话，
+这段代码的运算步数是 3(x+1)+2 = 3x+5
+
+这种方法虽然不会以来与电脑的配置，但是
+
+def search_for_elmt(L, e):
+    for i in L:
+        if i == e:
+            return True
+    return False
+这段代码是去搜索列表里的一个元素e，
+当e就在这个列表第一个位置时，是最好的情况
+当e在这个列表最后一个位置时，是最差的情况。
+
+
+
+
+
+        printMove(fr, to)下面这段
+        printMove(fr, to)
