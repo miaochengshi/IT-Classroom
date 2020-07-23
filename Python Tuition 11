@@ -83,3 +83,19 @@ def search_for_elmt(L, e):
 当e在这个列表最后一个位置时，是最差的情况。
 
 big O表示法，计算的是一个问题量级增加的时候，时间增长的一个趋势。
+
+big O的相加 
+Big O的相乘
+O(f(n)) + O(g(n)) is O( f(n) + g(n) )
+
+O(f(n)) * O(g(n)) is O( f(n) * g(n) )
+
+§ O(1) denotes constant running Ame
+§ O(log n) denotes logarithmic running Ame
+§ O(n) denotes linear running Ame
+§ O(n log n) denotes log-linear running Ame
+§ O(n**c) denotes polynomial running Ame (c is a constant)
+§ O(c**n) denotes exponenAal running Ame (c is a constant being raised to a power based on size of input)
+
+
+
