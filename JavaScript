@@ -1,0 +1,37 @@
+In today's lecture, we will simply get in touch with JavaScript, and learn how to set up the development
+environment. Finally, we will learn how to start our JS project through a simple code.
+
+What is JavaScript?
+Javacript is one of the most popular and wildely used programming language in the wolrd right now. 
+It's growing faster than any other parogramming languages. You can work as a front-end developer
+back-end developer or a full stack developer.
+
+What can you do with it?
+For a long time, JavaScript was only used in browsers to build interective web pages. Now you can 
+build web or mobile apps as well as real time networking application such as chats and video streaming services,
+command line tools or even games. 
+
+Where does JavaScript code run?
+JavaScript was orginally designed only in browsers, so every browser has what we a called JavaScript engine that 
+can execute JS code. For example, the JS engines in Firefox and Chrome are SpiderMonkey and v8.
+
+Every browser has a JS engine and we can easily write JS code without any additional tools. Of course, it is not
+how we build real world applications. It is just a quick demo.
+
+So, open a browser such as chrome and right click on an empty area and go to inspect. Then we are at the chrome develope
+tools. Select the console tab. This is the JS console, and we can write any valid JS code here. 
+
+You can type this: console.log('Hello World.')
+(console dot log, put a single quote here and then type Hello World. Put another quote, then add a semicolon at the end.)
+
+Now, press enter and you can see the Hello World message in the console. 
+
+We can also write mathematic expressions here. Like we type 6*9, then enter, the result will also appear in the console.
+
+Or we can do something like this,let us type alert('What's up!'), enter, then as you can see, here pops up a windows with 
+What's up!
+
+We then learn how to set up the development environment. In order to formally write a JS code, you need a code editor. There
+are varius code editors out there, including Visual Studio Code, or say VS Code, Sublime Text and so on. Let us use vs code
+to edit JS code in this course. After you are familiar with JS programming. You can turn to other editors as you like.
+
