@@ -35,3 +35,52 @@ We then learn how to set up the development environment. In order to formally wr
 are varius code editors out there, including Visual Studio Code, or say VS Code, Sublime Text and so on. Let us use vs code
 to edit JS code in this course. After you are familiar with JS programming. You can turn to other editors as you like.
 
+First， go to vs code official site, download and install vs code. https://code.visualstudio.com
+VS code is a simple, corssplatform editor.
+
+Now, let us start our first JS project. Firstly, we creat a new folder. js-basics.
+The name doesn't matter, we just creat a folder to put all the code we write latter in this course.
+
+Then we open VS code and click Open folder. Then in the popped up window, find and choose the folder you created
+just now. You can also just drag the folder you created to vs code directly. Now we get this folder open. You can see your 
+folder name on the left side. Let's then creat a new file here. Click the new file botton. The new file botton is the first
+botton to the left of the folder name.
+
+We name the new created file as index.html. We will learn what the html here mean in the future. Now I want you to type an
+explanation mark ! and then press tab. This generate some basic HTML biolerplate. We are going to ues this as a host for our 
+JS code. So save the changes. Now, open the extensions tab here. Here in this box, seach for and install live server. Live 
+server is a lightweight web server and we gona use it to serve our web application. After installing, you have to restart 
+vs code to make it work.
+
+After restart, go to the explorer tab, right click index.html and select open with live server. This will open your default 
+browser. The window will point to this address http://127.0.0.1:5500/index.html. That is where our web application is served
+from. Currently, we have an empty page. Now to make sure everything is workig property, we back the vs code.
+
+Here in the body section, let us add an h1 and press tab and type JS Classroom . Here the h1 means head 1. Therefore, the contencts
+you add between h1 will be taken as the head of the website. Now save the changes and back to the broswer, you can see this page
+is refreshed automatically and we have got the JS Classroom heading here. 
+
+Now we begin to write our first JS code. In order to write a JS code here, we need a script element. There are two places where 
+we can add a script element. We can add it here in the head section, or in the body section. It is better to put the script element 
+in the body section. Because the browser run this file from top to bottom. If we put this script element in the head section, we 
+will have a lot of JS code there, then the browser may get busy excuting JS code. And even worse, it may not be able to render the 
+content of the page. So this will creat a bad user experience.
+
+And typically, we put a script element after all the other elements. So we put it behind h1. To put a script element,
+we type script and press enter or tab. The second reason is almost alway, the code that we have in between script element needs to
+talk to the element on thi web page. As an example, we may want to show or hide some elements. So by adding the code here, at the end
+of body section, we will be confifdent that all these element are rendered by the browser now. 
+
+In the script element, we are gona to write the same code as we in the console. We write console.log("Hi, there.");
+
+What we have here is a statement. It is a piece of code that expresses an action to be carried out. In this case, we want to log a 
+message on a console. All statement in JS should be terminated with a semicolon. What we have have here, in between single quote, is 
+called a string. As you can see, string is a sequence of characters. 
+
+In JS, we also have this notation. We can add two slashes and this represent a comments. So here we can add some description to our
+code and this description is ignored by the JS engine. It is not excuted. It is just for documenting the code. When you want to explain
+to others who may read or use your code, you can write down your explantions by a comment.
+
+Save the changes, then back to the browser. We need to bring the console back up, so right click somewhere in the blank and go to the 
+inspect element, select the console tab, then you can see the hello world message.
+
