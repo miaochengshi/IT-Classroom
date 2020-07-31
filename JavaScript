@@ -1,7 +1,8 @@
 In today's lecture, we will simply get in touch with JavaScript, and learn how to set up the development
-environment. Finally, we will learn how to start our JS project through a simple code.
+environment. Then if time time, we will learn how to start our JS project through a simple example.
 
 What is JavaScript?
+First let us watch a intodutory video about JS. 
 Javacript is one of the most popular and wildely used programming language in the wolrd right now. 
 It's growing faster than any other parogramming languages. You can work as a front-end developer
 back-end developer or a full stack developer.
@@ -13,7 +14,7 @@ command line tools or even games.
 
 Where does JavaScript code run?
 JavaScript was orginally designed only in browsers, so every browser has what we a called JavaScript engine that 
-can execute JS code. For example, the JS engines in Firefox and Chrome are SpiderMonkey and v8.
+can execute JS code.
 
 Every browser has a JS engine and we can easily write JS code without any additional tools. Of course, it is not
 how we build real world applications. It is just a quick demo.
@@ -23,6 +24,9 @@ tools. Select the console tab. This is the JS console, and we can write any vali
 
 You can type this: console.log('Hello World.')
 (console dot log, put a single quote here and then type Hello World. Put another quote, then add a semicolon at the end.)
+
+最简单的写JS的方法，就是浏览器任意页面右键，选择inspect element。Math.sin(3)，Math.PI, 2*Math.PI。完整做网页需要 CSS 和 HTML
+alert(1+1)
 
 Now, press enter and you can see the Hello World message in the console. 
 
