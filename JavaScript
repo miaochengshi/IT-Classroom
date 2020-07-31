@@ -84,3 +84,57 @@ to others who may read or use your code, you can write down your explantions by 
 Save the changes, then back to the browser. We need to bring the console back up, so right click somewhere in the blank and go to the 
 inspect element, select the console tab, then you can see the hello world message.
 
+Actually, in real world, we may need to write thousands or millions lines of code. We don't want to write all that code in line here.
+We want to seperate our JS codem from our HTML code.
+
+So, open up the explorer windows, click add new file. We name the file main.js. Then we go back to index.html and cut all the JS code here,
+and paste it in the main.js. Then we can write JS code in this JS file. Now save the changes, back to the index.html.Now that all our JS 
+code is in a seperate file, we need to reference that file here. 
+
+So, let us add an attribute here. We type SRC, which is short for source, and set it to main.js. This statement tells the browser that 
+our JS code is now in main.js. Save the changes, back in the browser, you can still see the output here.
+
+Here in main.js, I am going to declare a variable. 
+
+最简单的写JS的方法，就是浏览器任意页面右键，选择inspect element。Math.sin(3)，Math.PI, 2*Math.PI。完整做网页需要 CSS 和 HTML
+alert(1+1)
+字符串 alert("Hello")
+alert('Hi' + 'there')
+'hello'.length;
+console.log('Hello'.length) 在console打印出来
+字符串某个位置的字符：
+"Hello".charAt(0)
+'Hello world'.replace('Hello', 'Goodbye')
+'Hello world'.toUppercase()
+''. 会自动弹出来很多方法。
+
+Boolean： True or False
+1 === 1
+1>2
+1>=1
+&& and
+|| or
+! not
+变量：
+var name = " "
+例如 var name = "JS Classroom"
+console.log(name);
+
+let a = 1
+console.log(a);
+
+name = 'Simon'
+console.log(name)
+
+常量 const
+const Pi = 3.14
+
+Pi = 3.141 会报错，因为常量不能再赋值
+
+x = '3' + 4 + 5 等价于 x = '3' + '4' + '5'
+x = 3 + 4 + '5'  75
+
+123 == '123' 第一个123会被自动转化为字符串 ‘123’
+123 === ‘123’ 不会自动进行类型转换
+
+
