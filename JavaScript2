@@ -103,9 +103,20 @@ language, static languages and dynamic languages. In static language, when we de
 type of that variable is set and it cannot be changed in the future. In a dynamic language like JavaScript, the type of a 
 language can be changed in the run time.
 
-OK. From now, I am gooing to change my teach style. We are going to learn JavaScript by making a simple game.
 
-But first, I would like to introduce some basic HTML skills. That is the HTML canvas. We can add a canvas to our page with:
+Up to now, we only can output strings or number to console. The user who are faced the web page cannot see anything unless
+then click the inpect element. 
+
+So here I want to tell you another method that can display information on the webpage. That is
+document.write()
+The document here is an object and it denots the HTML file we created here.  the 'write' after the object is a method. We use dot
+to refer to a method of an object. we have seen this before. When we want to use a math operation, we type Math.sin()...
+<br>  to start a new line.
+
+Next, I will tech you some really interesting. OK. From now, I am gooing to change my teach style. We are going to learn JavaScript 
+though the processing of making a simple game.
+
+But first, I would like to introduce some necessary HTML skills. That is the HTML canvas. We can add a canvas to our page with:
 <canvas id="myCanvas" width=200px height=200px style="border:1px solid #000000;"></canvas>
 
 This should give us a blank. 
@@ -122,8 +133,47 @@ const canvas = document.getElementById('myCanvas');
 
 We can also use var to do that.
 
-However, we may not want to 
+However, we may not want to change truth that the figure Canvas is always asigned to canvas. That is
+canvas always points to the figure. Therefore, it is better to defined canvas as a constant.
 
+Then we want to reference the context. What is context? Think of this context as the "contents" of our canvas. 
+As we draw things on this canvas, the context keeps a sort of memory of this.
+
+We refer to a context of canvas by canvas.getContext('2d')
+Here the 2d means that the context we are refering is 2 demensional.
+
+We then also asign the context to a contant context. Because now wo donot want to reasign context to other types
+
+If we did need the ability to have canvas or context point to some other value entirely, 
+we'd replace const with let or var.
+
+Next, we want to draw something in the context. It is like we draw somethign with a pencil on a paper.
+We start a path, define that path, then actually draw that path. Here's an example:
+
+The mathod to start a path in JavaScript is 
+context.beginPath();
+
+Then we set a stating point
+context.moveTo(10,10);
+
+After that, we set an ending point by
+context.lineTo(50,25);
+
+Let's open the webpage. Nothing has changed. Why?
+
+Because we just set thestaring point and the end point. It is like you take a pencil, then point to an arbitary point
+on the paper and say, that's the starting point, you then pint to another arbitary point and say well, that's ending point.
+
+But you do not do anything. You have draw a line between the two point.
+
+So, in the next step, we need to connect the two point with a line. In JavaScript, we use  stroke() to do that.
+Therefore, we type context.stroke();
+
+Save the file and see the webpage.
+
+A line appears.
+
+If we want to addmore lines, we can just copy and paste.
 
 
 
