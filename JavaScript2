@@ -1,0 +1,131 @@
+First, lets review what we have learnt last week.
+
+We learned how to how to write JS code in a standalone file.
+ <script SRC = 'main.js'></script>
+ 
+We learned how to use console.log() to output strings or  calculated
+results to the console.
+console.log('Hi, there') (string);
+console.log(3) (numbers);
+console.log(3+7) (operations);
+
+We learned how to use some math operations.
+Math.sin(3);
+Math.PI;
+
+We learned operations on strings
+'Hello' + 'World';
+"Hello World".replace('Hello', 'Goodbye');
+'hello'.toLocaleUpperCase();
+and so on.
+
+We learned how to pop up a window with alert messages.
+alert('Hi')
+
+We learned how to add comments
+// This is a comment
+
+We learned how to define variables in two ways: var and let
+var name = "Javasript";
+var type = 'sting'
+
+let name = 'JavaScript'
+let type = 'string'
+
+// The variable name cannot be reserved name like if,  var...
+// Should be meaningful. Avoid using a, b, c ...
+// cannot start with a number. (1name)
+// cannot contain a space or hyphen - (First Name, First-Name)
+// case sensitive (FirstName is different from firstName)
+
+We can change the value of a variable.
+
+let month  = 8;
+month = 9
+console.log(month)
+
+We also learned how to define a constant.
+constant pi = 3.14
+
+A constant cannot be changed. The console may return an error if we try to 
+reasign a constant.
+
+So, if we do not need to reasign, constant is a good choice. Otherwise, if
+we do need to reasign, we should define it as an variable.
+
+What can be assigned to a variable?
+
+Actually, we have two kinds of types that can be assigned.
+
+One is the Premitive/value type, the other is reference type. We will firstly 
+learn the premitive type.
+
+Premititive types include string, number, Boolean, undefined and null.
+
+let name = 'JavaScript'; (string)
+let idx = 6; (number)
+let isApproved = true; (Boolean)
+let isApproved = false; (Boolean)
+We use this in situations where we wonna have some logic. Here the true and false
+are reserved keywords. So they cannot be used a variable name.
+
+let firstName; 
+If we donot initial this variable with a value, it is undefined. We can also explicity
+say this variable is undefined by
+let = firstName = undefined;
+
+In contrast, we have another keyword, that is null. So let us declear another variable as null by
+let lastName = null;
+We use null in situations where we want to expecility clear the value of variable.
+
+For example, you may want to present the user with a list a colors. If the user has no select,
+you want set the selectedColor variable to null as
+let selectedColor = null;
+
+In the future, if you have seleted the color, we may reasign the selectedColor as, for example 'red'as
+let selectedColor = 'red';
+
+So, there are examples of premitive types. We have strings, numbers, booleans, undefined and null.
+
+So check a type a variable, we can use the key word. typeof variableName.
+
+We can see
+typeof name;
+
+Can you tell me what is the type of isApproved? 
+
+We will learn object later.
+
+Can you tell me what if we reasign variable name as number 1, what is the type of name then ?
+
+OK, cool. That is of the property of JavaScript. It is a dynamic language. We have two types of programming
+language, static languages and dynamic languages. In static language, when we delcar a variale a type, the 
+type of that variable is set and it cannot be changed in the future. In a dynamic language like JavaScript, the type of a 
+language can be changed in the run time.
+
+OK. From now, I am gooing to change my teach style. We are going to learn JavaScript by making a simple game.
+
+But first, I would like to introduce some basic HTML skills. That is the HTML canvas. We can add a canvas to our page with:
+<canvas id="myCanvas" width=200px height=200px style="border:1px solid #000000;"></canvas>
+
+This should give us a blank. 
+
+As you might imagine...we can modify this! Different objects have different attributes and properties that we can work with. 
+Canvas' are pretty unique, as we can draw things to them. That's the works we can do with JavaScript.
+
+First we get our canvas instance
+document.getElementById('myCanvas')
+
+This long string denotes the blank. So we asign it to a variable name canvas. How can we do that?
+Yes, we can us let to assign a variable:
+const canvas = document.getElementById('myCanvas');
+
+We can also use var to do that.
+
+However, we may not want to 
+
+
+
+
+
+
