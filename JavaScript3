@@ -1,0 +1,134 @@
+What if want to have multiple blob like this? How would we actually do that?
+
+You might think, well I can just copy and paste. And you could do that,
+we'd just copy and paste our blob code and then manually edit some of the variables 
+for the blob location and maybe size.
+
+however, In programming, there's a concept called "Don't Repeat Yourself," 
+The idea is that you want to avoid needing to repeat a "thing." 
+This thing might be a specific value, 
+so we use variables to set this value once and then reference the variable, 
+but this "thing" we repeat can also be a "block" (multiple lines) of code. 
+When we have repetion of a block of code, often a 'function' is the thing that can help us. 
+
+For our blob function, we'd like to probably like to be able to dictate position (x, y), size, and color. 
+
+So how do we do this? We donot want to change the staring anlgle and we always want to draw a full circle.
+
+So, We can begin defining a function like:
+
+function blob(x, y, size, color){
+              
+            }
+
+The name of our function is blob. The blob function takes in 4 parameters: x, y, size, and color.
+The code that belongs to this function is encased inside these curly braces. 
+Anything inside of these curly braces is "local" to our function. 
+Variables we define inside here, for example, are called "local variables."
+
+Now, we just need to replace our circle-drawing code's position, size, 
+and color values with these parameters, so our function is now:
+function blob(x, y, size, color){
+    context.beginPath();
+    // arc(positionx, positiony, size, starting angle, 2*Math.PI)
+    context.arc(x, y, size, 0, 2*Math.PI);
+    context.fillStyle = color;
+    context.fill();
+    context.stroke();
+}
+
+Now, if we just run this, nothing happens. This is because we've merely defined a function. 
+We're not calling it. An example of calling it might be: We pass values via variables.
+blob(100, 100, 25, 'blue')
+
+Now, adding a few more blobs is just one line per blob away!
+blob(100, 100, 25, 'blue')
+blob(30, 90, 15, 'green')
+blob(150, 160, 10, 'red')
+
+Now we have 3 static "blobs" to the screen, but how do we go about making these blobs just move around on their own?
+In the next step, we're going to look at a method that will allow us to animate our canvas. 
+To do this, we're going to use the built-in called setInterval to run functions based on a programmer-set interval.
+
+JavaScript has a built-in called setInterval. 
+The way this works is you pass the function you want to run on an interval, 
+followed by the number of milliseconds that you want the interval to be. 
+So what we'd like to do is maybe just move the x and y coordinates somehow. 
+
+To quickly do this, what if we added the following under our constants:
+
+Then, we can modify our blob function to add one to x and y every time it's called:
+
+Unfortunately, we've got some overlappage, and you need to watch out. As you can see, we're using x, y as our parameters,
+so this namespace is getting overwritten. Let's modify the function's parameters:
+
+function blob(x_loc, y_loc, size, color)
+
+And then again in the arc method, making our full function:
+
+            function blob(x_loc, y_loc, size, color){
+              context.beginPath();
+              context.arc(x_loc, y_loc,size,0,2*Math.PI);
+              context.fillStyle = color;
+              context.fill();
+              context.stroke();
+              x++;
+              y++;
+            }
+            
+Now, if we just call this blob function a bunch:
+
+            blob(x,y,25,"green");
+            blob(x,y,25,"green");
+            blob(x,y,25,"green");
+            blob(x,y,25,"green");
+            blob(x,y,25,"green");
+            blob(x,y,25,"green");
+
+just define the function from within the setInterval itself.
+            
+            
+Alright, the next major fix we need to make is 
+we need to stop the blob from "dragging" across the screen. 
+It should be cleanly drawn anew every time! For this, 
+we just need to clear the canvas. To do this, we reference the context and do a .clearRect. 
+Clear rect does what it sounds like, it will "clear" a rectangle's worth of contents, 
+and we just need to specify the dimensions of the rectangle we want to clear. 
+For now, we'll just clear the entire thing, since that will be super easy. We can do this with:            
+
+clearRect clearRect() 方法清空给定矩形内的指定像素。
+context.clearRect(x,y,width,height);
+x	要清除的矩形左上角的 x 坐标。
+y	要清除的矩形左上角的 y 坐标。
+width	要清除的矩形的宽度，以像素计。
+height	要清除的矩形的高度，以像素计。
+
+
+
+We're just going to reference the canvas' properties, like the canvas.width and canvas.height.
+
+Alright, what's next? I think we need to impose some limits for this blob.
+We need to keep it from going off screen. In the next tutorial, 
+we'll be learning about conditionals. 
+
+let x = 50
+let y = 50
+function blob(xLoc, yLoc, size, color){
+    context.beginPath();
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    // arc(positionx, positiony, size, starting angle, 2*Math.PI)
+    context.arc(xLoc, yLoc, size, 0, 2*Math.PI);
+    context.fillStyle = color;
+    context.fill();
+    context.stroke();
+}
+
+每三秒（3000 毫秒）弹出 "Hello" :
+setInterval(function(){ alert("Hello"); }, 3000);
+
+
+setInterval(function(){
+    blob(x, y, 25,"green")
+    x ++
+    y ++
+}, 10);
