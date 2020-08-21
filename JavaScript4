@@ -1,0 +1,93 @@
+Last, we let the blob moving, but it just keep moving and going out of the canvas.
+
+So we need to start being able to handle for that and just kieep it in bound basically.
+
+To do that, we are going to use conditonals.
+
+Basically, what we want to do is we want to check for when the blob is beyond a certain boundary.
+
+We want to flip it around, so here, we are going to make our modification to x and y.
+
+To start, we need to decide what we want to happen when the blob does go off of the screen. 
+
+I personally would like to see the blobs just bouncing around, so thats what I want to happen. 
+
+To make this happen, we're going to go ahead and set some variables for the change that we want to apply to both x and y:
+
+let xChange = 1;
+let yChange = 1;
+
+Then our setInterval function needs to reflect changing according to that variable:
+
+Running this gives us the same result as before, but allows us to modify the direction of the blob logically. 
+
+Under what condition should we reverse the xChange for this blob? If the x position is greater than the canvas.width, 
+
+we should turn around. The same is true for yChange and the canvas.width.
+
+With JavaScript, we can handle this conditional with something like:
+
+              if(x >= canvas.width){
+                xChange = -1
+              }
+              
+So the question is if(thing is the case){do this!}. To test a thing, we use comparison operators. 
+
+Here's a list of comparison operators:
+
+(x == y) Equality
+(x != y) inequality
+(x === y) identity (matches value and data type)
+(x!==y) non-identity
+(x < y) less than
+(x > y) greater than
+(x <= y) less than or equal to
+(x >= y) greater than or equal to
+
+Now we want to do the same thing with the yChange, making our whole setInterval block:
+
+
+            setInterval(function(){
+              blob(x, y, 25,"green")
+              x += xChange;
+              y += yChange;
+
+              if(x >= canvas.width){
+                xChange = -1
+              }
+
+              if(y >= canvas.height){
+                yChange = -1
+              }
+
+            },10)
+
+The result here:
+
+So now, we have to handle for when the x and y are less than 0. 
+
+To do this, we could have yet another 2 if-statements, but can we do better? 
+
+In this case, when the blob exceeds any boundary, our goal really is to just go the other way. Reverse. Flip. 
+
+Whatever you want to call it. What we can do instead is multiply our changes by -1, and this would achieve the same result. 
+
+So, if the x is less than or equal to 0, OR if its greater than the canvas width, then we want to flip the xChange. Code to reflect this:
+
+              if(x >= canvas.width || x <= 0){
+                xChange *= -1
+              }
+              
+The || signifies an "or." The xChange *= -1 is the same as doing xChange = xChange * -1.
+
+Now, if we want to make the bouncing slightly less uniform, we can just make our canvas less uniform:
+
+This isn't the only way we can do this, we can also make the movement non-uniform. We can set changes in decimals, 
+so later we could maybe make a random choice or something between 0.5 and 1 for the x and y change variables. For now, good enough! 
+
+So what's next? I would like to have many blobs, each of which should have their own movement. 
+
+How might we do that? That will be the discussion of our next tutorial!
+
+
+
